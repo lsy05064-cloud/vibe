@@ -31,9 +31,29 @@ with st.sidebar:
     page = st.radio("이동", ["소개", "스킬", "프로젝트", "연락처"], label_visibility="collapsed")
 
 if page == "소개":
-    st.title(f"👋 {PROFILE['name']}")
-    st.subheader(PROFILE["title"])
-    st.write(PROFILE["bio"])
+    st.image("assets/banner.png", use_container_width=True)
+
+    col_avatar, col_intro = st.columns([1, 3])
+    with col_avatar:
+        st.image("assets/avatar.png", width=150)
+    with col_intro:
+        st.title(f"👋 {PROFILE['name']}")
+        st.subheader(PROFILE["title"])
+        st.write(PROFILE["bio"])
+
+    st.divider()
+    badge_cols = st.columns(3)
+    for col, (img, label) in zip(
+        badge_cols,
+        [
+            ("assets/badge_code.png", "코딩"),
+            ("assets/badge_idea.png", "아이디어"),
+            ("assets/badge_rocket.png", "실행력"),
+        ],
+    ):
+        with col:
+            st.image(img, width=100)
+            st.caption(label)
 
 elif page == "스킬":
     st.title("🛠️ 스킬")
